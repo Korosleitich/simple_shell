@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * is_cdir - checks ":" if is in the current directory.
+ * exec_cdir - checks ":" if is in the current directory.
  * @path: type char pointer char.
  * @i: type int pointer of index.
  * Return: 1 if the path is searchable in the cd, 0 otherwise.
  */
-int is_cdir(char *path, int *i)
+int exec_cdir(char *path, int *i)
 {
 	if (path[*i] == ':')
 		return (1);
@@ -23,13 +23,13 @@ int is_cdir(char *path, int *i)
 }
 
 /**
- * _which - locates a command
+ * _execute - locates a command
  *
  * @cmd: command name
  * @_environ: environment variable
  * Return: location of the command.
  */
-char *_which(char *cmd, char **_environ)
+char *_execute(char *cmd, char **_environ)
 {
 	char *path, *ptr_path, *token_path, *dir;
 	int len_dir, len_cmd, i;
@@ -44,7 +44,7 @@ char *_which(char *cmd, char **_environ)
 		i = 0;
 		while (token_path != NULL)
 		{
-			if (is_cdir(path, &i))
+			if (exec_cdir(path, &i))
 				if (stat(cmd, &st) == 0)
 					return (cmd);
 			len_dir = _strlen(token_path);
@@ -118,13 +118,13 @@ int is_executable(data_shell *datash)
 }
 
 /**
- * check_error_cmd - verifies if user has permissions to access
+ * fault_cmd - verifies if user has permissions to access
  *
  * @dir: destination directory
  * @datash: data structure
  * Return: 1 if there is an error, 0 if not
  */
-int check_error_cmd(char *dir, data_shell *datash)
+int fault_cmd(char *dir, data_shell *datash)
 {
 	if (dir == NULL)
 	{
@@ -174,8 +174,8 @@ int cmd_exec(data_shell *datash)
 		return (1);
 	if (exec == 0)
 	{
-		dir = _which(datash->args[0], datash->_environ);
-		if (check_error_cmd(dir, datash) == 1)
+		dir = _execute(datash->args[0], datash->_environ);
+		if (fault_cmd(dir, datash) == 1)
 			return (1);
 	}
 
@@ -183,7 +183,7 @@ int cmd_exec(data_shell *datash)
 	if (pd == 0)
 	{
 		if (exec == 0)
-			dir = _which(datash->args[0], datash->_environ);
+			dir = _execute(datash->args[0], datash->_environ);
 		else
 			dir = datash->args[0];
 		execve(dir + exec, datash->args, datash->_environ);
