@@ -1,42 +1,39 @@
 #include "main.h"
 
 /**
-
- *show_error - calls the error according to the builtin
+ *show_fault - calls the error according to the builtin
  *syntax or permission
  *@datash: data structure that contains arguments
-
- *@eval: error value
-
- *Return: error
+ *@eval: fault value
+ *Return: fault
  */
-int show_error(data_shell *datash, int eval)
+int show_fault(data_shell *datash, int eval)
 {
-char *error;
+char *fault;
 
 switch (eval)
 {
 case -1:
-error = error_env(datash);
+fault = fault_env(datash);
 break;
 case 126:
-error = error_path_126(datash);
+fault = fault_path_126(datash);
 break;
 case 127:
-error = error_not_found(datash);
+fault = fault_not_found(datash);
 break;
 case 2:
 if (_strcmp("exit", datash->args[0]) == 0)
-error = error_exit_shell(datash);
+fault = fault_exit_shell(datash);
 else if (_strcmp("cd", datash->args[0]) == 0)
-error = error_get_cd(datash);
+fault = fault_get_cd(datash);
 break;
 }
 
-if (error)
+if (fault)
 {
-write(STDERR_FILENO, error, _strlen(error));
-free(error);
+write(STDERR_FILENO, fault, _strlen(error));
+free(fault);
 }
 
 datash->status = eval;

@@ -2,9 +2,7 @@
 
 /**
  *fault_env - fault message for env in get_env.
-
  *@datash: data relevant (counter, arguments)
-
  *Return: fault message.
  */
 char *fault_env(data_shell *datash)
@@ -38,11 +36,8 @@ free(kip_lim);
 return (fault);
 }
 /**
-
  *fault_path_126 - fault message for path and failure denied permission.
-
  *@datash: data relevant (counter, arguments).
-
  *Return: The fault string.
  */
 char *fault_path_126(data_shell *datash)

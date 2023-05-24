@@ -1,17 +1,11 @@
 #include "main.h"
 
 /**
-
  *strcat_cd_help - function that concatenates the message for cd_fault_a
-
  *@datash: data relevant (directory)
-
  *@msg: message to print
-
  *@fault: output message
-
  *@ver_str: counter lines
-
  *Return: error message
  */
 char *strcat_cd_help(data_shell *datash, char *msg, char *fault, char *ver_str)
@@ -44,11 +38,8 @@ return (fault);
 }
 
 /**
-
  *fault_get_cd_help - fault message for cd command in get_cd_help
-
  *@datash: data relevant (directory)
-
  *Return: Fault message
  */
 char *fault_get_cd_help(data_shell *datash)
@@ -86,11 +77,8 @@ return (fault);
 }
 
 /**
-
  *fault_not_found - generic fault message for command not found
-
  *@datash: data relevant (counter, arguments)
-
  *Return: Fault message
  */
 char *fault_not_found(data_shell *datash)

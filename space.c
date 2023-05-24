@@ -1,15 +1,10 @@
 #include "main.h"
 
 /**
-
  *get_space - assigns the spaceptr var for get_line
-
  *@spaceptr: Buffer that stores the input str
-
  *@buffer: str that is been called to space
-
  *@n: size of space
-
  *@j: size of buffer
  */
 void get_space(char **spaceptr, size_t *n, char *buffer, size_t j)
@@ -34,18 +29,13 @@ _strcpy(spaceptr, buffer);
 free(buffer);
 }
 }
-/
-
-get_line - Read input from stream
-
-@spaceptr: buffer that stores the input
-
-@n: size of spaceptr
-
-@stream: stream to read from
-
-Return: The number of bytes
-*/
+/**
+ *get_line - Read input from stream
+ *@spaceptr: buffer that stores the input
+ *@n: size of spaceptr
+ *@stream: stream to read from
+ *Return: The number of bytes
+ */
 ssize_t get_line(char **spaceptr, size_t *n, FILE *stream)
 {
 int i;
